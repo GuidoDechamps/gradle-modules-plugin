@@ -6,6 +6,20 @@ dependencies {
     testImplementation 'org.hamcrest:hamcrest:2.1+'
 }
 
+//Added by Guido
+// Despite having add these moduleOptions with reads the test fail because the read is not added.
+// java.lang.IllegalAccessError: class examples.greeter.AddReadsTest (in module greeter.provider)
+// cannot access class org.assertj.core.api.Assertions (in module org.assertj.core)
+// because module greeter.provider does not read module org.assertj.core
+compileTestJava {
+    moduleOptions {
+        addModules = ['org.assertj.core,org.mockito']
+        addReads = [
+                'greeter.provider': 'org.assertj.core,org.mockito'
+        ]
+    }
+}
+
 patchModules.config = [
         'java.annotation=jsr305-3.0.2.jar'
 ]

@@ -5,3 +5,8 @@
 // "requires java.scripting"
 --add-reads
   greeter.provider=java.scripting,org.hamcrest
+
+
+  // Added by Guido
+  //Why do I still need to add this if I also declare it in ModuleOptions the gradle file?
+  // greeter.provider=java.scripting,org.hamcrest,org.assertj.core,org.mockito
